@@ -76,5 +76,5 @@ false        {return new Bool(yytext().toString(), getPosition());}
 
 {ident}      {return new Identifier(yytext().toString(), getPosition());}
 
-[^]     { throw new ParseErrorException(); }
+[^]     { throw new ParseErrorException(getPosition()); }
 

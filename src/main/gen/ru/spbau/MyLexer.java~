@@ -587,7 +587,7 @@ class MyLexer {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { throw new ParseErrorException();
+            { throw new ParseErrorException(getPosition);
             }
           case 33: break;
           case 2: 
