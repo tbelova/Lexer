@@ -20,7 +20,7 @@ public class Main {
         try {
             tokens = Tokenizer.getTokens(readFileToString(new File(args[0]), (Charset) null));
         } catch (ParseErrorException e) {
-            System.out.println("Faild to read in position" + e.getPosition().toString());
+            System.out.println("Failed to read in position" + e.getPosition().toString());
         } catch (IOException e) {
             System.out.println("Failed to read this file.");
         }

@@ -37,7 +37,7 @@ float = {integer}*"."({digits})?({exp})+ |{integer}*"."{digits} |{integer}{exp}?
 %%
 
 {whiteSpace} {}
-{comment}    {return new Commentary(getPosition());}
+{comment}    {return new Commentary(yytext().toString(), getPosition());}
 
 {integer}    {return new Int(yytext().toString(), getPosition());}
 {float}      {return new Float(yytext().toString(), getPosition());}
@@ -60,7 +60,7 @@ false        {return new Bool(yytext().toString(), getPosition());}
 "*"          {return new Operator(OperatorType.MULT, getPosition());}
 "/"          {return new Operator(OperatorType.DIV, getPosition());}
 "%"          {return new Operator(OperatorType.REM, getPosition());}
-"=="          {return new Operator(OperatorType.EQ, getPosition());}
+"=="         {return new Operator(OperatorType.EQ, getPosition());}
 "!="         {return new Operator(OperatorType.NEQ, getPosition());}
 ">"          {return new Operator(OperatorType.G, getPosition());}
 ">="         {return new Operator(OperatorType.GE, getPosition());}
@@ -68,6 +68,7 @@ false        {return new Bool(yytext().toString(), getPosition());}
 "<="         {return new Operator(OperatorType.LE, getPosition());}
 "&&"         {return new Operator(OperatorType.AND, getPosition());}
 "||"         {return new Operator(OperatorType.OR, getPosition());}
+":="         {return new Operator(OperatorType.AS, getPosition());}
 
 "("          {return new LeftParenthesis(getPosition());}
 ")"          {return new RightParenthesis(getPosition());}

@@ -4,8 +4,10 @@ import org.jetbrains.annotations.NotNull;
 
 public class Commentary extends Token {
     private static final String name = "Commentary";
+    private @NotNull String commentary;
 
-    public Commentary(@NotNull Position position) {
+    public Commentary(@NotNull String commentary, @NotNull Position position) {
+        this.commentary = commentary.substring(2);
         this.position = position;
     }
 
@@ -16,6 +18,6 @@ public class Commentary extends Token {
 
     @Override
     public @NotNull String getProperties() {
-        return "";
+        return '(' + commentary + ')';
     }
 }

@@ -216,7 +216,7 @@ public class TokenizerTest {
         tokens.add(new KeyWord(KeyWordType.READ, new Position(0, 0, 3)));
         tokens.add(new Identifier("x", new Position(0, 5, 5)));
         tokens.add(new Semicolon(new Position(0, 6, 6)));
-        tokens.add(new Commentary(new Position(0, 8, 15)));
+        tokens.add(new Commentary("//read x", new Position(0, 8, 15)));
         tokens.add(new KeyWord(KeyWordType.IF, new Position(1, 0, 1)));
         tokens.add(new Identifier("y", new Position(1, 3, 3)));
         tokens.add(new Operator(OperatorType.PLUS, new Position(1, 5, 5)));
@@ -229,7 +229,7 @@ public class TokenizerTest {
         tokens.add(new KeyWord(KeyWordType.ELSE, new Position(3, 1, 4)));
         tokens.add(new KeyWord(KeyWordType.WRITE, new Position(3, 6, 10)));
         tokens.add(new Identifier("x", new Position(3, 12, 12)));
-        tokens.add(new Commentary(new Position(3, 14, 33)));
+        tokens.add(new Commentary("//end of the program", new Position(3, 14, 33)));
 
         assertEquals(tokens, Tokenizer.getTokens(test));
     }
@@ -242,6 +242,21 @@ public class TokenizerTest {
         tokens.add(new Int(1, new Position(0, 0, 0)));
         tokens.add(new Operator(OperatorType.PLUS, new Position(0, 1, 1)));
         tokens.add(new Int(2, new Position(0, 2, 2)));
+
+        assertEquals(tokens, Tokenizer.getTokens(test));
+    }
+
+    @Test
+    public void assignmentTest() throws Exception {
+        String test = "x := y + 1;";
+
+        List<Token> tokens = new ArrayList<>();
+        tokens.add(new Identifier("x", new Position(0, 0, 0)));
+        tokens.add(new Operator(OperatorType.AS, new Position(0, 2, 3)));
+        tokens.add(new Identifier("y", new Position(0, 5, 5)));
+        tokens.add(new Operator(OperatorType.PLUS, new Position(0, 7, 7)));
+        tokens.add(new Int(1, new Position(0, 9, 9)));
+        tokens.add(new Semicolon(new Position(0, 10, 10)));
 
         assertEquals(tokens, Tokenizer.getTokens(test));
     }

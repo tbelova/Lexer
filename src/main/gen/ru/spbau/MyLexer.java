@@ -48,8 +48,8 @@ class MyLexer {
 
   /* The ZZ_CMAP_A table has 256 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
-    "\11\0\1\7\1\6\1\0\1\7\1\5\22\0\1\7\1\40\3\0\1\36\1\43\1\0\1\45\1\46\1\35\1"+
-    "\15\1\0\1\16\1\21\1\14\1\2\11\1\1\0\1\47\1\42\1\37\1\41\6\0\1\20\31\0\1\3"+
+    "\11\0\1\7\1\6\1\0\1\7\1\5\22\0\1\7\1\40\3\0\1\36\1\43\1\0\1\46\1\47\1\35\1"+
+    "\15\1\0\1\16\1\21\1\14\1\2\11\1\1\45\1\50\1\42\1\37\1\41\6\0\1\20\31\0\1\3"+
     "\1\0\1\32\1\33\1\4\1\10\1\17\1\22\1\12\1\23\1\11\2\4\1\25\1\4\1\24\1\30\2"+
     "\4\1\31\1\26\1\13\1\34\1\4\1\27\3\4\1\0\1\44\203\0");
 
@@ -61,14 +61,14 @@ class MyLexer {
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\2\2\1\3\2\4\3\3\1\5\1\6"+
     "\1\7\1\3\1\1\4\3\1\10\1\11\2\1\1\12"+
-    "\1\13\2\1\1\14\1\15\1\16\4\0\1\17\1\20"+
+    "\1\13\3\1\1\14\1\15\1\16\4\0\1\17\1\20"+
     "\2\3\1\21\2\3\1\22\1\0\5\3\1\23\1\24"+
-    "\1\25\1\26\1\27\1\30\2\22\1\0\2\3\1\31"+
-    "\1\3\1\0\2\22\1\0\5\3\1\32\1\33\1\34"+
-    "\2\3\1\35\1\3\1\36\1\37\1\40";
+    "\1\25\1\26\1\27\1\30\1\31\2\22\1\0\2\3"+
+    "\1\32\1\3\1\0\2\22\1\0\5\3\1\33\1\34"+
+    "\1\35\2\3\1\36\1\3\1\37\1\40\1\41";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[80];
+    int [] result = new int[82];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -93,19 +93,20 @@ class MyLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\50\0\120\0\170\0\240\0\310\0\50\0\360"+
-    "\0\u0118\0\u0140\0\u0168\0\50\0\50\0\u0190\0\u01b8\0\u01e0"+
-    "\0\u0208\0\u0230\0\u0258\0\50\0\50\0\u0280\0\u02a8\0\u02d0"+
-    "\0\u02f8\0\u0320\0\u0348\0\50\0\50\0\50\0\u0370\0\u01b8"+
-    "\0\u0398\0\u03c0\0\240\0\240\0\u03e8\0\u0410\0\u0438\0\u0460"+
-    "\0\u0488\0\u04b0\0\u04d8\0\u0500\0\u0528\0\u0550\0\u0578\0\u05a0"+
-    "\0\50\0\50\0\50\0\50\0\50\0\50\0\u05c8\0\50"+
-    "\0\u05f0\0\u0618\0\u0640\0\240\0\u0668\0\u0690\0\u06b8\0\u06e0"+
-    "\0\u0708\0\u0730\0\u0758\0\u0780\0\u07a8\0\u07d0\0\240\0\240"+
-    "\0\240\0\u07f8\0\u0820\0\240\0\u0848\0\240\0\240\0\240";
+    "\0\0\0\51\0\122\0\173\0\244\0\315\0\51\0\366"+
+    "\0\u011f\0\u0148\0\u0171\0\51\0\51\0\u019a\0\u01c3\0\u01ec"+
+    "\0\u0215\0\u023e\0\u0267\0\51\0\51\0\u0290\0\u02b9\0\u02e2"+
+    "\0\u030b\0\u0334\0\u035d\0\u0386\0\51\0\51\0\51\0\u03af"+
+    "\0\u01c3\0\u03d8\0\u0401\0\244\0\244\0\u042a\0\u0453\0\u047c"+
+    "\0\u04a5\0\u04ce\0\u04f7\0\u0520\0\u0549\0\u0572\0\u059b\0\u05c4"+
+    "\0\u05ed\0\51\0\51\0\51\0\51\0\51\0\51\0\51"+
+    "\0\u0616\0\51\0\u063f\0\u0668\0\u0691\0\244\0\u06ba\0\u06e3"+
+    "\0\u070c\0\u0735\0\u075e\0\u0787\0\u07b0\0\u07d9\0\u0802\0\u082b"+
+    "\0\244\0\244\0\244\0\u0854\0\u087d\0\244\0\u08a6\0\244"+
+    "\0\244\0\244";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[80];
+    int [] result = new int[82];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -132,54 +133,54 @@ class MyLexer {
     "\1\5\1\12\1\13\1\14\1\15\1\16\1\2\1\17"+
     "\1\20\4\5\1\21\1\5\1\22\1\5\1\23\1\5"+
     "\1\24\1\25\1\26\1\27\1\30\1\31\1\32\1\33"+
-    "\1\34\1\35\1\36\51\0\3\3\13\0\2\37\1\40"+
-    "\27\0\1\41\1\42\14\0\2\37\1\40\31\0\2\5"+
-    "\3\0\4\5\3\0\1\5\2\0\13\5\21\0\1\7"+
-    "\44\0\2\5\3\0\4\5\3\0\1\5\2\0\6\5"+
-    "\1\43\4\5\16\0\2\5\3\0\4\5\3\0\1\5"+
-    "\2\0\1\44\12\5\16\0\2\5\3\0\4\5\3\0"+
-    "\1\5\2\0\1\5\1\45\5\5\1\46\3\5\27\0"+
-    "\1\47\36\0\2\5\3\0\4\5\3\0\1\5\2\0"+
-    "\2\5\1\50\1\51\7\5\14\0\2\52\14\0\2\53"+
-    "\32\0\2\5\3\0\4\5\3\0\1\5\2\0\10\5"+
-    "\1\54\2\5\16\0\2\5\3\0\4\5\3\0\1\5"+
-    "\2\0\1\5\1\55\5\5\1\56\3\5\16\0\2\5"+
-    "\3\0\4\5\3\0\1\57\2\0\13\5\16\0\2\5"+
-    "\3\0\4\5\3\0\1\60\2\0\13\5\52\0\1\61"+
-    "\47\0\1\62\47\0\1\63\47\0\1\64\53\0\1\65"+
-    "\50\0\1\66\4\0\1\67\1\70\12\0\2\71\32\0"+
-    "\3\41\15\0\1\40\27\0\1\41\1\42\16\0\1\40"+
-    "\31\0\2\5\3\0\4\5\3\0\1\72\2\0\13\5"+
-    "\16\0\2\5\3\0\4\5\3\0\1\5\2\0\12\5"+
-    "\1\73\13\0\5\47\2\0\41\47\3\0\2\5\3\0"+
-    "\1\74\3\5\3\0\1\5\2\0\13\5\16\0\2\5"+
-    "\3\0\4\5\3\0\1\5\2\0\4\5\1\75\6\5"+
-    "\14\0\2\52\1\76\13\0\2\53\30\0\1\77\1\100"+
-    "\12\0\2\101\34\0\2\5\3\0\4\5\3\0\1\5"+
-    "\2\0\3\5\1\102\7\5\16\0\2\5\3\0\1\5"+
-    "\1\103\2\5\3\0\1\5\2\0\13\5\16\0\2\5"+
-    "\3\0\1\5\1\104\2\5\3\0\1\5\2\0\13\5"+
-    "\16\0\2\5\3\0\4\5\3\0\1\5\2\0\10\5"+
-    "\1\105\2\5\16\0\2\5\3\0\2\5\1\106\1\5"+
-    "\3\0\1\5\2\0\13\5\14\0\3\67\45\0\1\67"+
-    "\1\70\50\0\2\5\3\0\4\5\3\0\1\5\2\0"+
-    "\2\5\1\107\10\5\16\0\2\5\3\0\4\5\3\0"+
-    "\1\110\2\0\13\5\16\0\2\5\3\0\4\5\3\0"+
-    "\1\111\2\0\13\5\14\0\2\52\1\76\45\0\3\77"+
-    "\13\0\2\53\46\0\2\53\30\0\1\77\1\100\50\0"+
-    "\2\5\3\0\4\5\3\0\1\5\2\0\4\5\1\73"+
-    "\6\5\16\0\2\5\3\0\4\5\3\0\1\5\2\0"+
-    "\3\5\1\112\7\5\16\0\2\5\3\0\3\5\1\113"+
-    "\3\0\1\5\2\0\13\5\16\0\2\5\3\0\1\114"+
-    "\3\5\3\0\1\5\2\0\13\5\16\0\2\5\3\0"+
-    "\1\5\1\115\2\5\3\0\1\5\2\0\13\5\16\0"+
-    "\2\5\3\0\4\5\3\0\1\116\2\0\13\5\16\0"+
-    "\2\5\3\0\4\5\3\0\1\117\2\0\13\5\16\0"+
-    "\2\5\3\0\4\5\3\0\1\5\2\0\2\5\1\120"+
-    "\10\5\13\0";
+    "\1\34\1\35\1\36\1\37\52\0\3\3\13\0\2\40"+
+    "\1\41\30\0\1\42\1\43\14\0\2\40\1\41\32\0"+
+    "\2\5\3\0\4\5\3\0\1\5\2\0\13\5\22\0"+
+    "\1\7\45\0\2\5\3\0\4\5\3\0\1\5\2\0"+
+    "\6\5\1\44\4\5\17\0\2\5\3\0\4\5\3\0"+
+    "\1\5\2\0\1\45\12\5\17\0\2\5\3\0\4\5"+
+    "\3\0\1\5\2\0\1\5\1\46\5\5\1\47\3\5"+
+    "\30\0\1\50\37\0\2\5\3\0\4\5\3\0\1\5"+
+    "\2\0\2\5\1\51\1\52\7\5\15\0\2\53\14\0"+
+    "\2\54\33\0\2\5\3\0\4\5\3\0\1\5\2\0"+
+    "\10\5\1\55\2\5\17\0\2\5\3\0\4\5\3\0"+
+    "\1\5\2\0\1\5\1\56\5\5\1\57\3\5\17\0"+
+    "\2\5\3\0\4\5\3\0\1\60\2\0\13\5\17\0"+
+    "\2\5\3\0\4\5\3\0\1\61\2\0\13\5\53\0"+
+    "\1\62\50\0\1\63\50\0\1\64\50\0\1\65\54\0"+
+    "\1\66\51\0\1\67\43\0\1\70\12\0\1\71\1\72"+
+    "\12\0\2\73\33\0\3\42\15\0\1\41\30\0\1\42"+
+    "\1\43\16\0\1\41\32\0\2\5\3\0\4\5\3\0"+
+    "\1\74\2\0\13\5\17\0\2\5\3\0\4\5\3\0"+
+    "\1\5\2\0\12\5\1\75\14\0\5\50\2\0\42\50"+
+    "\3\0\2\5\3\0\1\76\3\5\3\0\1\5\2\0"+
+    "\13\5\17\0\2\5\3\0\4\5\3\0\1\5\2\0"+
+    "\4\5\1\77\6\5\15\0\2\53\1\100\13\0\2\54"+
+    "\31\0\1\101\1\102\12\0\2\103\35\0\2\5\3\0"+
+    "\4\5\3\0\1\5\2\0\3\5\1\104\7\5\17\0"+
+    "\2\5\3\0\1\5\1\105\2\5\3\0\1\5\2\0"+
+    "\13\5\17\0\2\5\3\0\1\5\1\106\2\5\3\0"+
+    "\1\5\2\0\13\5\17\0\2\5\3\0\4\5\3\0"+
+    "\1\5\2\0\10\5\1\107\2\5\17\0\2\5\3\0"+
+    "\2\5\1\110\1\5\3\0\1\5\2\0\13\5\15\0"+
+    "\3\71\46\0\1\71\1\72\51\0\2\5\3\0\4\5"+
+    "\3\0\1\5\2\0\2\5\1\111\10\5\17\0\2\5"+
+    "\3\0\4\5\3\0\1\112\2\0\13\5\17\0\2\5"+
+    "\3\0\4\5\3\0\1\113\2\0\13\5\15\0\2\53"+
+    "\1\100\46\0\3\101\13\0\2\54\47\0\2\54\31\0"+
+    "\1\101\1\102\51\0\2\5\3\0\4\5\3\0\1\5"+
+    "\2\0\4\5\1\75\6\5\17\0\2\5\3\0\4\5"+
+    "\3\0\1\5\2\0\3\5\1\114\7\5\17\0\2\5"+
+    "\3\0\3\5\1\115\3\0\1\5\2\0\13\5\17\0"+
+    "\2\5\3\0\1\116\3\5\3\0\1\5\2\0\13\5"+
+    "\17\0\2\5\3\0\1\5\1\117\2\5\3\0\1\5"+
+    "\2\0\13\5\17\0\2\5\3\0\4\5\3\0\1\120"+
+    "\2\0\13\5\17\0\2\5\3\0\4\5\3\0\1\121"+
+    "\2\0\13\5\17\0\2\5\3\0\4\5\3\0\1\5"+
+    "\2\0\2\5\1\122\10\5\14\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[2160];
+    int [] result = new int[2255];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -218,11 +219,11 @@ class MyLexer {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\1\0\1\11\4\1\1\11\4\1\2\11\6\1\2\11"+
-    "\6\1\3\11\4\0\10\1\1\0\5\1\6\11\1\1"+
+    "\7\1\3\11\4\0\10\1\1\0\5\1\7\11\1\1"+
     "\1\11\1\0\4\1\1\0\2\1\1\0\17\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[80];
+    int [] result = new int[82];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -589,131 +590,135 @@ class MyLexer {
           case 1: 
             { throw new ParseErrorException(getPosition());
             }
-          case 33: break;
+          case 34: break;
           case 2: 
             { return new Int(yytext().toString(), getPosition());
             }
-          case 34: break;
+          case 35: break;
           case 3: 
             { return new Identifier(yytext().toString(), getPosition());
             }
-          case 35: break;
+          case 36: break;
           case 4: 
             { 
             }
-          case 36: break;
+          case 37: break;
           case 5: 
             { return new Operator(OperatorType.DIV, getPosition());
             }
-          case 37: break;
+          case 38: break;
           case 6: 
             { return new Operator(OperatorType.PLUS, getPosition());
             }
-          case 38: break;
+          case 39: break;
           case 7: 
             { return new Operator(OperatorType.MINUS, getPosition());
             }
-          case 39: break;
+          case 40: break;
           case 8: 
             { return new Operator(OperatorType.MULT, getPosition());
             }
-          case 40: break;
+          case 41: break;
           case 9: 
             { return new Operator(OperatorType.REM, getPosition());
             }
-          case 41: break;
+          case 42: break;
           case 10: 
             { return new Operator(OperatorType.G, getPosition());
             }
-          case 42: break;
+          case 43: break;
           case 11: 
             { return new Operator(OperatorType.L, getPosition());
             }
-          case 43: break;
+          case 44: break;
           case 12: 
             { return new LeftParenthesis(getPosition());
             }
-          case 44: break;
+          case 45: break;
           case 13: 
             { return new RightParenthesis(getPosition());
             }
-          case 45: break;
+          case 46: break;
           case 14: 
             { return new Semicolon(getPosition());
             }
-          case 46: break;
+          case 47: break;
           case 15: 
             { return new KeyWord(KeyWordType.DO, getPosition());
             }
-          case 47: break;
+          case 48: break;
           case 16: 
             { return new KeyWord(KeyWordType.IF, getPosition());
             }
-          case 48: break;
-          case 17: 
-            { return new Commentary(getPosition());
-            }
           case 49: break;
+          case 17: 
+            { return new Commentary(yytext().toString(), getPosition());
+            }
+          case 50: break;
           case 18: 
             { return new Float(yytext().toString(), getPosition());
             }
-          case 50: break;
+          case 51: break;
           case 19: 
             { return new Operator(OperatorType.EQ, getPosition());
             }
-          case 51: break;
+          case 52: break;
           case 20: 
             { return new Operator(OperatorType.NEQ, getPosition());
             }
-          case 52: break;
+          case 53: break;
           case 21: 
             { return new Operator(OperatorType.GE, getPosition());
             }
-          case 53: break;
+          case 54: break;
           case 22: 
             { return new Operator(OperatorType.LE, getPosition());
             }
-          case 54: break;
+          case 55: break;
           case 23: 
             { return new Operator(OperatorType.AND, getPosition());
             }
-          case 55: break;
+          case 56: break;
           case 24: 
             { return new Operator(OperatorType.OR, getPosition());
             }
-          case 56: break;
-          case 25: 
-            { return new KeyWord(KeyWordType.END, getPosition());
-            }
           case 57: break;
-          case 26: 
-            { return new KeyWord(KeyWordType.THEN, getPosition());
+          case 25: 
+            { return new Operator(OperatorType.AS, getPosition());
             }
           case 58: break;
-          case 27: 
-            { return new Bool(yytext().toString(), getPosition());
+          case 26: 
+            { return new KeyWord(KeyWordType.END, getPosition());
             }
           case 59: break;
-          case 28: 
-            { return new KeyWord(KeyWordType.ELSE, getPosition());
+          case 27: 
+            { return new KeyWord(KeyWordType.THEN, getPosition());
             }
           case 60: break;
-          case 29: 
-            { return new KeyWord(KeyWordType.READ, getPosition());
+          case 28: 
+            { return new Bool(yytext().toString(), getPosition());
             }
           case 61: break;
-          case 30: 
-            { return new KeyWord(KeyWordType.WHILE, getPosition());
+          case 29: 
+            { return new KeyWord(KeyWordType.ELSE, getPosition());
             }
           case 62: break;
-          case 31: 
-            { return new KeyWord(KeyWordType.WRITE, getPosition());
+          case 30: 
+            { return new KeyWord(KeyWordType.READ, getPosition());
             }
           case 63: break;
-          case 32: 
-            { return new KeyWord(KeyWordType.BEGIN, getPosition());
+          case 31: 
+            { return new KeyWord(KeyWordType.WHILE, getPosition());
             }
           case 64: break;
+          case 32: 
+            { return new KeyWord(KeyWordType.WRITE, getPosition());
+            }
+          case 65: break;
+          case 33: 
+            { return new KeyWord(KeyWordType.BEGIN, getPosition());
+            }
+          case 66: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }
