@@ -1,8 +1,6 @@
 package ru.spbau;
 
-import java.io.IOException;
-
-public class ParseErrorException extends IOException {
+public class ParseErrorException extends RuntimeException {
     private Position position;
 
     ParseErrorException(Position position) {
