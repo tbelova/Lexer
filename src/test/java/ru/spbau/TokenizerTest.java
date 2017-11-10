@@ -80,35 +80,35 @@ public class TokenizerTest {
 
     @Test
     public void integerTest() throws Exception {
-        String test = "0 1 -12 123";
+        String test = "0 1 12 123";
 
         List<Token> tokens = new ArrayList<>();
 
         tokens.add(new Int(0, new Position(0, 0, 0)));
         tokens.add(new Int(1, new Position(0, 2, 2)));
-        tokens.add(new Int(-12, new Position(0, 4, 6)));
-        tokens.add(new Int(123, new Position(0, 8, 10)));
+        tokens.add(new Int(12, new Position(0, 4, 5)));
+        tokens.add(new Int(123, new Position(0, 7, 9)));
 
         assertEquals(tokens, Tokenizer.getTokens(test));
     }
 
     @Test
     public void integerTestWithUnderscores() throws Exception {
-        String test = "0 1 -1_2 1_2_3";
+        String test = "0 1 1_2 1_2_3";
 
         List<Token> tokens = new ArrayList<>();
 
         tokens.add(new Int(0, new Position(0, 0, 0)));
         tokens.add(new Int(1, new Position(0, 2, 2)));
-        tokens.add(new Int(-12, new Position(0, 4, 7)));
-        tokens.add(new Int(123, new Position(0, 9, 13)));
+        tokens.add(new Int(12, new Position(0, 4, 6)));
+        tokens.add(new Int(123, new Position(0, 8, 12)));
 
         assertEquals(tokens, Tokenizer.getTokens(test));
     }
 
     @Test
     public void floatTest() throws Exception {
-        String test = "0.01 1.2 12.e-3 12.3e4 -10.01e-100 .05";
+        String test = "0.01 1.2 12.e-3 12.3e4 10.01e-100 .05";
 
         List<Token> tokens = new ArrayList<>();
 
@@ -116,23 +116,23 @@ public class TokenizerTest {
         tokens.add(new Float(1.2, new Position(0, 5, 7)));
         tokens.add(new Float(12.e-3, new Position(0, 9, 14)));
         tokens.add(new Float(12.3e4, new Position(0, 16, 21)));
-        tokens.add(new Float(-10.01e-100, new Position(0, 23, 33)));
-        tokens.add(new Float(0.05, new Position(0, 35, 37)));
+        tokens.add(new Float(10.01e-100, new Position(0, 23, 32)));
+        tokens.add(new Float(0.05, new Position(0, 34, 36)));
 
         assertEquals(tokens, Tokenizer.getTokens(test));
     }
 
     @Test
     public void floatTestWithUnderscores() throws Exception {
-        String test = "0.0_1 1.2 1_2.e-3 1_2.3e4 -1_0.01e-1_0_0 .0_5";
+        String test = "0.0_1 1.2 1_2.e-3 1_2.3e4 1_0.01e-1_0_0 .0_5";
 
         List<Token> tokens = new ArrayList<>();
         tokens.add(new Float(0.01, new Position(0, 0, 4)));
         tokens.add(new Float(1.2, new Position(0, 6, 8)));
         tokens.add(new Float(12.e-3, new Position(0, 10, 16)));
         tokens.add(new Float(12.3e4, new Position(0, 18, 24)));
-        tokens.add(new Float(-10.01e-100, new Position(0, 26, 39)));
-        tokens.add(new Float(0.05, new Position(0, 41, 44)));
+        tokens.add(new Float(10.01e-100, new Position(0, 26, 38)));
+        tokens.add(new Float(0.05, new Position(0, 40, 43)));
 
         assertEquals(tokens, Tokenizer.getTokens(test));
     }
@@ -234,6 +234,16 @@ public class TokenizerTest {
         assertEquals(tokens, Tokenizer.getTokens(test));
     }
 
+    @Test
+    public void plusTest() throws Exception {
+        String test = "1+2";
 
+        List<Token> tokens = new ArrayList<>();
+        tokens.add(new Int(1, new Position(0, 0, 0)));
+        tokens.add(new Operator(OperatorType.PLUS, new Position(0, 1, 1)));
+        tokens.add(new Int(2, new Position(0, 2, 2)));
+
+        assertEquals(tokens, Tokenizer.getTokens(test));
+    }
 
 }

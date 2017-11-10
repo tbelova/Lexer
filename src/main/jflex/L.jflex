@@ -20,9 +20,9 @@ whiteSpace = {lineTerminator}|[ \t\f]
 ident = ("_"|{letter})(_|{letter}|digit)*
 comment = "//"[^\r\n]*
 
-//integer = ("+"|"-")?(0|{positiveDigit}({digit})*)
-integer = ("+"|"-")?(0|{positiveDigit}{digitsAndUnderscores})
-exp = (e|E){integer}
+integer = (0|{positiveDigit}{digitsAndUnderscores})
+signedInteger = ("+"|"-")?{integer}
+exp = (e|E){signedInteger}
 float = {integer}*"."({digits})?({exp})+ |{integer}*"."{digits} |{integer}{exp}?
 
 %{
