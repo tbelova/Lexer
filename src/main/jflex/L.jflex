@@ -17,13 +17,13 @@ letter = [a-z]
 lineTerminator = \r|\n|\r\n
 whiteSpace = {lineTerminator}|[ \t\f]
 
-ident = ("_"|{letter})(_|{letter}|digit)*
+ident = ("_"|{letter})(_|{letter}|{digit})*
 comment = "//"[^\r\n]*
 
 integer = (0|{positiveDigit}{digitsAndUnderscores})
 signedInteger = ("+"|"-")?{integer}
 exp = (e|E){signedInteger}
-float = {integer}*"."({digits})?({exp})+ |{integer}*"."{digits} |{integer}{exp}?
+float = {integer}?"."({digits})?({exp})? |{integer}*"."{digits} |{integer}{exp}?
 
 %{
     private int yyline = 0;

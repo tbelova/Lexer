@@ -1,0 +1,261 @@
+// Generated from /home/tanya/AU/5thTerm/FL/hw04/Lexer/src/main/antlr/L.g4 by ANTLR 4.7
+
+
+import org.antlr.v4.runtime.tree.ParseTreeListener;
+
+/**
+ * This interface defines a complete listener for a parse tree produced by
+ * {@link LParser}.
+ */
+public interface LListener extends ParseTreeListener {
+	/**
+	 * Enter a parse tree produced by {@link LParser#program}.
+	 * @param ctx the parse tree
+	 */
+	void enterProgram(LParser.ProgramContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#program}.
+	 * @param ctx the parse tree
+	 */
+	void exitProgram(LParser.ProgramContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlock(LParser.BlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlock(LParser.BlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#statements}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatements(LParser.StatementsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#statements}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatements(LParser.StatementsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatement(LParser.StatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatement(LParser.StatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#ifstatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfstatement(LParser.IfstatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#ifstatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfstatement(LParser.IfstatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignment(LParser.AssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignment(LParser.AssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#whileStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileStatement(LParser.WhileStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#whileStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileStatement(LParser.WhileStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#conditionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionStatement(LParser.ConditionStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#conditionStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionStatement(LParser.ConditionStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCall(LParser.FunctionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCall(LParser.FunctionCallContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#comp}.
+	 * @param ctx the parse tree
+	 */
+	void enterComp(LParser.CompContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#comp}.
+	 * @param ctx the parse tree
+	 */
+	void exitComp(LParser.CompContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#expressions}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressions(LParser.ExpressionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#expressions}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressions(LParser.ExpressionsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpression(LParser.ExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpression(LParser.ExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#p}.
+	 * @param ctx the parse tree
+	 */
+	void enterP(LParser.PContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#p}.
+	 * @param ctx the parse tree
+	 */
+	void exitP(LParser.PContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#m}.
+	 * @param ctx the parse tree
+	 */
+	void enterM(LParser.MContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#m}.
+	 * @param ctx the parse tree
+	 */
+	void exitM(LParser.MContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#u}.
+	 * @param ctx the parse tree
+	 */
+	void enterU(LParser.UContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#u}.
+	 * @param ctx the parse tree
+	 */
+	void exitU(LParser.UContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#z}.
+	 * @param ctx the parse tree
+	 */
+	void enterZ(LParser.ZContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#z}.
+	 * @param ctx the parse tree
+	 */
+	void exitZ(LParser.ZContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumber(LParser.NumberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumber(LParser.NumberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#digit}.
+	 * @param ctx the parse tree
+	 */
+	void enterDigit(LParser.DigitContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#digit}.
+	 * @param ctx the parse tree
+	 */
+	void exitDigit(LParser.DigitContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#digitsAndUnderscores}.
+	 * @param ctx the parse tree
+	 */
+	void enterDigitsAndUnderscores(LParser.DigitsAndUnderscoresContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#digitsAndUnderscores}.
+	 * @param ctx the parse tree
+	 */
+	void exitDigitsAndUnderscores(LParser.DigitsAndUnderscoresContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#digits}.
+	 * @param ctx the parse tree
+	 */
+	void enterDigits(LParser.DigitsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#digits}.
+	 * @param ctx the parse tree
+	 */
+	void exitDigits(LParser.DigitsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#r_integer}.
+	 * @param ctx the parse tree
+	 */
+	void enterR_integer(LParser.R_integerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#r_integer}.
+	 * @param ctx the parse tree
+	 */
+	void exitR_integer(LParser.R_integerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#signedInteger}.
+	 * @param ctx the parse tree
+	 */
+	void enterSignedInteger(LParser.SignedIntegerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#signedInteger}.
+	 * @param ctx the parse tree
+	 */
+	void exitSignedInteger(LParser.SignedIntegerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void enterExp(LParser.ExpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void exitExp(LParser.ExpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#r_float}.
+	 * @param ctx the parse tree
+	 */
+	void enterR_float(LParser.R_floatContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#r_float}.
+	 * @param ctx the parse tree
+	 */
+	void exitR_float(LParser.R_floatContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#ident}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdent(LParser.IdentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#ident}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdent(LParser.IdentContext ctx);
+}

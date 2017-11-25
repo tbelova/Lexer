@@ -2,7 +2,7 @@ package ru.spbau;
 
 import org.jetbrains.annotations.NotNull;
 
-public class KeyWord extends  Token {
+public class KeyWord extends Token {
 
     private static final String name = "KW";
     private KeyWordType type;
