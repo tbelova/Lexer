@@ -1,8 +1,5 @@
 grammar L;
 
-@header {
-}
-
 program: block EOF;
 
 block: LeftFigureBrace statements RightFigureBrace;
