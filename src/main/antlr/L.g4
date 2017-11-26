@@ -27,7 +27,7 @@ ge: GE;
 l: L;
 le: LE;
 
-returnStatement: Return | Return expression;
+returnStatement: Return | Return expression | Return booleanExpression;
 
 expressions: expression | expression Comma expressions;
 expression: p;
