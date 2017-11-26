@@ -18,8 +18,8 @@ public class LLexer extends Lexer {
 	public static final int
 		PositiveDigit=1, Underscore=2, Letter=3, LineTerminator=4, Dot=5, Comma=6, 
 		LeftBrace=7, RightBrace=8, LeftFigureBrace=9, RightFigureBrace=10, Semicolon=11, 
-		PLUS=12, MINUS=13, MULT=14, DIV=15, REM=16, EQ=17, NEQ=18, G=19, GE=20, 
-		L=21, LE=22, AND=23, OR=24, AS=25, If=26, Then=27, Else=28, While=29, 
+		PLUS=12, MINUS=13, MULT=14, DIV=15, REM=16, EQ=17, NEQ=18, GE=19, G=20, 
+		LE=21, L=22, AND=23, OR=24, AS=25, If=26, Then=27, Else=28, While=29, 
 		Return=30, True=31, False=32, Zero=33, Sign=34, E=35, Comment=36, WhiteSpace=37;
 	public static String[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
@@ -32,22 +32,22 @@ public class LLexer extends Lexer {
 	public static final String[] ruleNames = {
 		"PositiveDigit", "Underscore", "Letter", "LineTerminator", "Dot", "Comma", 
 		"LeftBrace", "RightBrace", "LeftFigureBrace", "RightFigureBrace", "Semicolon", 
-		"PLUS", "MINUS", "MULT", "DIV", "REM", "EQ", "NEQ", "G", "GE", "L", "LE", 
+		"PLUS", "MINUS", "MULT", "DIV", "REM", "EQ", "NEQ", "GE", "G", "LE", "L", 
 		"AND", "OR", "AS", "If", "Then", "Else", "While", "Return", "True", "False", 
 		"Zero", "Sign", "E", "Comment", "WhiteSpace"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
 		null, null, "'_'", null, null, "'.'", "','", "'('", "')'", "'{'", "'}'", 
-		"';'", "'+'", "'-'", "'*'", "'/'", "'%'", "'=='", "'!='", "'>'", "'>='", 
-		"'<'", "'<='", "'&&'", "'||'", "':='", "'if'", "'then'", "'else'", "'while'", 
+		"';'", "'+'", "'-'", "'*'", "'/'", "'%'", "'=='", "'!='", "'>='", "'>'", 
+		"'<='", "'<'", "'&&'", "'||'", "':='", "'if'", "'then'", "'else'", "'while'", 
 		"'return'", "'true'", "'false'", "'0'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, "PositiveDigit", "Underscore", "Letter", "LineTerminator", "Dot", 
 		"Comma", "LeftBrace", "RightBrace", "LeftFigureBrace", "RightFigureBrace", 
-		"Semicolon", "PLUS", "MINUS", "MULT", "DIV", "REM", "EQ", "NEQ", "G", 
-		"GE", "L", "LE", "AND", "OR", "AS", "If", "Then", "Else", "While", "Return", 
+		"Semicolon", "PLUS", "MINUS", "MULT", "DIV", "REM", "EQ", "NEQ", "GE", 
+		"G", "LE", "L", "AND", "OR", "AS", "If", "Then", "Else", "While", "Return", 
 		"True", "False", "Zero", "Sign", "E", "Comment", "WhiteSpace"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
@@ -116,7 +116,7 @@ public class LLexer extends Lexer {
 		"\t!\4\"\t\"\4#\t#\4$\t$\4%\t%\4&\t&\3\2\3\2\3\3\3\3\3\4\3\4\3\5\3\5\3"+
 		"\5\5\5W\n\5\3\6\3\6\3\7\3\7\3\b\3\b\3\t\3\t\3\n\3\n\3\13\3\13\3\f\3\f"+
 		"\3\r\3\r\3\16\3\16\3\17\3\17\3\20\3\20\3\21\3\21\3\22\3\22\3\22\3\23\3"+
-		"\23\3\23\3\24\3\24\3\25\3\25\3\25\3\26\3\26\3\27\3\27\3\27\3\30\3\30\3"+
+		"\23\3\23\3\24\3\24\3\24\3\25\3\25\3\26\3\26\3\26\3\27\3\27\3\30\3\30\3"+
 		"\30\3\31\3\31\3\31\3\32\3\32\3\32\3\33\3\33\3\33\3\34\3\34\3\34\3\34\3"+
 		"\34\3\35\3\35\3\35\3\35\3\35\3\36\3\36\3\36\3\36\3\36\3\36\3\37\3\37\3"+
 		"\37\3\37\3\37\3\37\3\37\3 \3 \3 \3 \3 \3!\3!\3!\3!\3!\3!\3\"\3\"\3#\3"+
@@ -133,8 +133,8 @@ public class LLexer extends Lexer {
 		"C\3\2\2\2\2E\3\2\2\2\2G\3\2\2\2\2I\3\2\2\2\2K\3\2\2\2\3M\3\2\2\2\5O\3"+
 		"\2\2\2\7Q\3\2\2\2\tV\3\2\2\2\13X\3\2\2\2\rZ\3\2\2\2\17\\\3\2\2\2\21^\3"+
 		"\2\2\2\23`\3\2\2\2\25b\3\2\2\2\27d\3\2\2\2\31f\3\2\2\2\33h\3\2\2\2\35"+
-		"j\3\2\2\2\37l\3\2\2\2!n\3\2\2\2#p\3\2\2\2%s\3\2\2\2\'v\3\2\2\2)x\3\2\2"+
-		"\2+{\3\2\2\2-}\3\2\2\2/\u0080\3\2\2\2\61\u0083\3\2\2\2\63\u0086\3\2\2"+
+		"j\3\2\2\2\37l\3\2\2\2!n\3\2\2\2#p\3\2\2\2%s\3\2\2\2\'v\3\2\2\2)y\3\2\2"+
+		"\2+{\3\2\2\2-~\3\2\2\2/\u0080\3\2\2\2\61\u0083\3\2\2\2\63\u0086\3\2\2"+
 		"\2\65\u0089\3\2\2\2\67\u008c\3\2\2\29\u0091\3\2\2\2;\u0096\3\2\2\2=\u009c"+
 		"\3\2\2\2?\u00a3\3\2\2\2A\u00a8\3\2\2\2C\u00ae\3\2\2\2E\u00b0\3\2\2\2G"+
 		"\u00b2\3\2\2\2I\u00b4\3\2\2\2K\u00c1\3\2\2\2MN\4\63;\2N\4\3\2\2\2OP\7"+
@@ -143,9 +143,9 @@ public class LLexer extends Lexer {
 		"\\]\7*\2\2]\20\3\2\2\2^_\7+\2\2_\22\3\2\2\2`a\7}\2\2a\24\3\2\2\2bc\7\177"+
 		"\2\2c\26\3\2\2\2de\7=\2\2e\30\3\2\2\2fg\7-\2\2g\32\3\2\2\2hi\7/\2\2i\34"+
 		"\3\2\2\2jk\7,\2\2k\36\3\2\2\2lm\7\61\2\2m \3\2\2\2no\7\'\2\2o\"\3\2\2"+
-		"\2pq\7?\2\2qr\7?\2\2r$\3\2\2\2st\7#\2\2tu\7?\2\2u&\3\2\2\2vw\7@\2\2w("+
-		"\3\2\2\2xy\7@\2\2yz\7?\2\2z*\3\2\2\2{|\7>\2\2|,\3\2\2\2}~\7>\2\2~\177"+
-		"\7?\2\2\177.\3\2\2\2\u0080\u0081\7(\2\2\u0081\u0082\7(\2\2\u0082\60\3"+
+		"\2pq\7?\2\2qr\7?\2\2r$\3\2\2\2st\7#\2\2tu\7?\2\2u&\3\2\2\2vw\7@\2\2wx"+
+		"\7?\2\2x(\3\2\2\2yz\7@\2\2z*\3\2\2\2{|\7>\2\2|}\7?\2\2},\3\2\2\2~\177"+
+		"\7>\2\2\177.\3\2\2\2\u0080\u0081\7(\2\2\u0081\u0082\7(\2\2\u0082\60\3"+
 		"\2\2\2\u0083\u0084\7~\2\2\u0084\u0085\7~\2\2\u0085\62\3\2\2\2\u0086\u0087"+
 		"\7<\2\2\u0087\u0088\7?\2\2\u0088\64\3\2\2\2\u0089\u008a\7k\2\2\u008a\u008b"+
 		"\7h\2\2\u008b\66\3\2\2\2\u008c\u008d\7v\2\2\u008d\u008e\7j\2\2\u008e\u008f"+

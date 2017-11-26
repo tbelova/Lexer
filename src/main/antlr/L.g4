@@ -5,13 +5,21 @@ program: statements;
 block: LeftFigureBrace statements RightFigureBrace;
 statements: | function | statement | block | statement statements | block statements;
 statement: functionCall Semicolon | assignment Semicolon | whileStatement | ifstatement | returnStatement Semicolon | expression Semicolon;
-ifstatement: If LeftBrace conditionStatement RightBrace Then block | If LeftBrace conditionStatement RightBrace Then block Else block ;
+ifstatement: If LeftBrace conditionStatement RightBrace Then thenStatement | If LeftBrace conditionStatement RightBrace Then thenStatement Else elseStatement;
 assignment: ident AS conditionStatement | ident AS expression;
 whileStatement: While LeftBrace conditionStatement RightBrace block;
-conditionStatement: True | False | expression comp expression;
+conditionStatement: True | False | booleanExpression;
+thenStatement: block;
+elseStatement: block;
 function: ident LeftBrace idents RightBrace block;
 functionCall: ident LeftBrace expressions RightBrace;
-comp: eq | neq | g | ge | l | le;
+
+booleanExpression: a;
+
+a: b | r_or = a OR b;
+b: c | r_and = b AND c;
+c: d | r_eq = c EQ d | r_neq = c NEQ d | r_g = c G d | r_ge = c GE d | r_l = c L d | r_le = c LE d;
+d: expression | LeftBrace d RightBrace;
 
 eq: EQ;
 neq: NEQ;
@@ -68,10 +76,10 @@ DIV: '/';
 REM: '%';
 EQ: '==';
 NEQ: '!=';
-G: '>';
 GE: '>=';
-L: '<';
+G: '>';
 LE: '<=';
+L: '<';
 AND: '&&';
 OR: '||';
 AS: ':=';

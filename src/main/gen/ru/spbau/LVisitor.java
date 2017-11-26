@@ -58,6 +58,18 @@ public interface LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConditionStatement(LParser.ConditionStatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LParser#thenStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitThenStatement(LParser.ThenStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#elseStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElseStatement(LParser.ElseStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link LParser#function}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -70,11 +82,35 @@ public interface LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionCall(LParser.FunctionCallContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LParser#comp}.
+	 * Visit a parse tree produced by {@link LParser#booleanExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitComp(LParser.CompContext ctx);
+	T visitBooleanExpression(LParser.BooleanExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#a}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitA(LParser.AContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#b}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitB(LParser.BContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#c}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitC(LParser.CContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#d}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitD(LParser.DContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link LParser#eq}.
 	 * @param ctx the parse tree

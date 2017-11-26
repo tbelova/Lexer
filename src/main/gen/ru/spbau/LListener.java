@@ -87,6 +87,26 @@ public interface LListener extends ParseTreeListener {
 	 */
 	void exitConditionStatement(LParser.ConditionStatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LParser#thenStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterThenStatement(LParser.ThenStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#thenStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitThenStatement(LParser.ThenStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#elseStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterElseStatement(LParser.ElseStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#elseStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitElseStatement(LParser.ElseStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link LParser#function}.
 	 * @param ctx the parse tree
 	 */
@@ -107,15 +127,55 @@ public interface LListener extends ParseTreeListener {
 	 */
 	void exitFunctionCall(LParser.FunctionCallContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link LParser#comp}.
+	 * Enter a parse tree produced by {@link LParser#booleanExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterComp(LParser.CompContext ctx);
+	void enterBooleanExpression(LParser.BooleanExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link LParser#comp}.
+	 * Exit a parse tree produced by {@link LParser#booleanExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitComp(LParser.CompContext ctx);
+	void exitBooleanExpression(LParser.BooleanExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#a}.
+	 * @param ctx the parse tree
+	 */
+	void enterA(LParser.AContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#a}.
+	 * @param ctx the parse tree
+	 */
+	void exitA(LParser.AContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#b}.
+	 * @param ctx the parse tree
+	 */
+	void enterB(LParser.BContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#b}.
+	 * @param ctx the parse tree
+	 */
+	void exitB(LParser.BContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#c}.
+	 * @param ctx the parse tree
+	 */
+	void enterC(LParser.CContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#c}.
+	 * @param ctx the parse tree
+	 */
+	void exitC(LParser.CContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#d}.
+	 * @param ctx the parse tree
+	 */
+	void enterD(LParser.DContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#d}.
+	 * @param ctx the parse tree
+	 */
+	void exitD(LParser.DContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link LParser#eq}.
 	 * @param ctx the parse tree

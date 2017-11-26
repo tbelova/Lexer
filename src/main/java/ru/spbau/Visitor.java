@@ -164,6 +164,40 @@ public class Visitor implements LVisitor<String> {
     }
 
     /**
+     * Visit a parse tree produced by {@link LParser#thenStatement}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitThenStatement(LParser.ThenStatementContext ctx) {
+        String ans = write("THEN_STATEMENT", ctx.getSourceInterval());
+        tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#elseStatement}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitElseStatement(LParser.ElseStatementContext ctx) {
+        String ans = write("ELSE_STATEMENT", ctx.getSourceInterval());
+        tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        tabs--;
+        return ans;
+    }
+
+    /**
      * Visit a parse tree produced by {@link LParser#function}.
      *
      * @param ctx the parse tree
@@ -198,19 +232,120 @@ public class Visitor implements LVisitor<String> {
     }
 
     /**
-     * Visit a parse tree produced by {@link LParser#comp}.
+     * Visit a parse tree produced by {@link LParser#booleanExpression}.
      *
      * @param ctx the parse tree
      * @return the visitor result
      */
     @Override
-    public String visitComp(LParser.CompContext ctx) {
-        String ans = write("COMPARE", ctx.getSourceInterval());
+    public String visitBooleanExpression(LParser.BooleanExpressionContext ctx) {
+        String ans = write("BOOLEAN_EXPRESSION", ctx.getSourceInterval());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
         }
         tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#a}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitA(LParser.AContext ctx) {
+        String ans = "";
+        boolean exp = false;
+        if (ctx.r_or != null) {
+            ans = write("OR", ctx.getSourceInterval());
+            exp = true;
+        }
+        if (exp) tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        if (exp) tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#b}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitB(LParser.BContext ctx) {
+        String ans = "";
+        boolean exp = false;
+        if (ctx.r_and != null) {
+            ans = write("AND", ctx.getSourceInterval());
+            exp = true;
+        }
+        if (exp) tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        if (exp) tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#c}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitC(LParser.CContext ctx) {
+        String ans = "";
+        boolean exp = false;
+        if (ctx.r_eq != null) {
+            ans = write("EQ", ctx.getSourceInterval());
+            exp = true;
+        }
+        if (ctx.r_neq != null) {
+            ans = write("NEQ", ctx.getSourceInterval());
+            exp = true;
+        }
+        if (ctx.r_g != null) {
+            ans = write("G", ctx.getSourceInterval());
+            exp = true;
+        }
+        if (ctx.r_ge != null) {
+            ans = write("GE", ctx.getSourceInterval());
+            exp = true;
+        }
+        if (ctx.r_l != null) {
+            ans = write("L", ctx.getSourceInterval());
+            exp = true;
+        }
+        if (ctx.r_le != null) {
+            ans = write("LE", ctx.getSourceInterval());
+            exp = true;
+        }
+        if (exp) tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        if (exp) tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#d}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitD(LParser.DContext ctx) {
+        String ans = "";
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
         return ans;
     }
 
