@@ -22,7 +22,7 @@ public class Main {
             return;
         }
 
-        String outFileName = fileName.split(".")[0] + ".parsed";
+        String outFileName = fileName + ".parsed";
         try {
             PrintWriter writer = new PrintWriter(outFileName, "UTF-8");
             writer.print(result);
