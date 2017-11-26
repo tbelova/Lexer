@@ -1,24 +1,38 @@
 grammar L;
 
-program: block EOF;
+program: statements;
 
 block: LeftFigureBrace statements RightFigureBrace;
-statements: | statement | block | statement statements | block statements;
-statement: functionCall Semicolon | assignment Semicolon | whileStatement Semicolon | ifstatement Semicolon;
+statements: | function | statement | block | statement statements | block statements;
+statement: functionCall Semicolon | assignment Semicolon | whileStatement | ifstatement | returnStatement Semicolon | expression Semicolon;
 ifstatement: If LeftBrace conditionStatement RightBrace Then block | If LeftBrace conditionStatement RightBrace Then block Else block ;
 assignment: ident AS conditionStatement | ident AS expression;
 whileStatement: While LeftBrace conditionStatement RightBrace block;
 conditionStatement: True | False | expression comp expression;
+function: ident LeftBrace idents RightBrace block;
 functionCall: ident LeftBrace expressions RightBrace;
-comp: EQ | NEQ | G | GE | L | LE;
+comp: eq | neq | g | ge | l | le;
+
+eq: EQ;
+neq: NEQ;
+g: G;
+ge: GE;
+l: L;
+le: LE;
+
+returnStatement: Return | Return smth;
 
 expressions: expression | expression Comma expressions;
 expression: p;
 
-p: m | p PLUS m | p MINUS m;
-m: u | m MULT u | m DIV u;
-u: MINUS u | z;
-z: number | ident | LeftBrace p RightBrace;
+idents: ident | ident Comma idents;
+
+p: m | sum = p PLUS m | sub = p MINUS m;
+m: u | mult = m MULT u | div = m DIV u | rem = m REM u;
+u: unary_minus = MINUS u | z;
+z: smth | LeftBrace p RightBrace;
+
+smth: number | ident | functionCall;
 
 number: r_integer | r_float;
 
@@ -38,10 +52,6 @@ Underscore: '_';
 
 Letter: 'a'..'z';
 LineTerminator: '\r'|'\n'|'\r\n';
-
-Zero: '0';
-Sign: '+' | '-';
-E: 'e' | 'E';
 
 Dot: '.';
 Comma: ',';
@@ -71,8 +81,14 @@ Then: 'then';
 Else: 'else';
 While: 'while';
 
+Return: 'return';
+
 True: 'true';
 False: 'false';
+
+Zero: '0';
+Sign: '+' | '-';
+E: 'e' | 'E';
 
 Comment: '//'(~('\r'|'\n'))* -> skip;
 WhiteSpace: (LineTerminator |' '|'\t'|'\f') -> skip;

@@ -1,7 +1,6 @@
 package ru.spbau;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 
 import static org.apache.commons.io.FileUtils.readFileToString;
@@ -13,16 +12,26 @@ public class Main {
             System.out.println("No file.");
             return;
         }
+        String fileName = args[0];
 
         String result = "";
         try {
-            result = new MyParser(readFileToString(new File(args[0]), (Charset) null)).printTree();
+            result = new MyParser(readFileToString(new File(fileName), (Charset) null)).printTree();
         } catch (IOException e) {
             System.out.println("failed");
             return;
         }
 
-        System.out.println(result);
+        String outFileName = fileName.split(".")[0] + ".parsed";
+        try {
+            PrintWriter writer = new PrintWriter(outFileName, "UTF-8");
+            writer.print(result);
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -87,6 +87,16 @@ public interface LListener extends ParseTreeListener {
 	 */
 	void exitConditionStatement(LParser.ConditionStatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction(LParser.FunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#function}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction(LParser.FunctionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link LParser#functionCall}.
 	 * @param ctx the parse tree
 	 */
@@ -107,6 +117,76 @@ public interface LListener extends ParseTreeListener {
 	 */
 	void exitComp(LParser.CompContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LParser#eq}.
+	 * @param ctx the parse tree
+	 */
+	void enterEq(LParser.EqContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#eq}.
+	 * @param ctx the parse tree
+	 */
+	void exitEq(LParser.EqContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#neq}.
+	 * @param ctx the parse tree
+	 */
+	void enterNeq(LParser.NeqContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#neq}.
+	 * @param ctx the parse tree
+	 */
+	void exitNeq(LParser.NeqContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#g}.
+	 * @param ctx the parse tree
+	 */
+	void enterG(LParser.GContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#g}.
+	 * @param ctx the parse tree
+	 */
+	void exitG(LParser.GContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#ge}.
+	 * @param ctx the parse tree
+	 */
+	void enterGe(LParser.GeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#ge}.
+	 * @param ctx the parse tree
+	 */
+	void exitGe(LParser.GeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#l}.
+	 * @param ctx the parse tree
+	 */
+	void enterL(LParser.LContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#l}.
+	 * @param ctx the parse tree
+	 */
+	void exitL(LParser.LContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#le}.
+	 * @param ctx the parse tree
+	 */
+	void enterLe(LParser.LeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#le}.
+	 * @param ctx the parse tree
+	 */
+	void exitLe(LParser.LeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnStatement(LParser.ReturnStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnStatement(LParser.ReturnStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link LParser#expressions}.
 	 * @param ctx the parse tree
 	 */
@@ -126,6 +206,16 @@ public interface LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpression(LParser.ExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#idents}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdents(LParser.IdentsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#idents}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdents(LParser.IdentsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link LParser#p}.
 	 * @param ctx the parse tree
@@ -166,6 +256,16 @@ public interface LListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitZ(LParser.ZContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#smth}.
+	 * @param ctx the parse tree
+	 */
+	void enterSmth(LParser.SmthContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#smth}.
+	 * @param ctx the parse tree
+	 */
+	void exitSmth(LParser.SmthContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link LParser#number}.
 	 * @param ctx the parse tree

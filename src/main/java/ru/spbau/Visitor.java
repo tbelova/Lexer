@@ -20,7 +20,7 @@ public class Visitor implements LVisitor<String> {
     }
 
     private @NotNull String spaces() {
-        return spaces(2 * tabs);
+        return spaces(3 * tabs);
     }
 
     private @NotNull String write(@NotNull String s, Interval i) {
@@ -41,7 +41,7 @@ public class Visitor implements LVisitor<String> {
     public String visitProgram(LParser.ProgramContext ctx) {
         String ans = write("PROGRAM", ctx.getSourceInterval());
         tabs++;
-        ans += visitBlock(ctx.block());
+        ans += visitStatements(ctx.statements());
         tabs--;
         return ans;
     }
@@ -164,6 +164,23 @@ public class Visitor implements LVisitor<String> {
     }
 
     /**
+     * Visit a parse tree produced by {@link LParser#function}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitFunction(LParser.FunctionContext ctx) {
+        String ans = write("FUNCTION", ctx.getSourceInterval());
+        tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        tabs--;
+        return ans;
+    }
+
+    /**
      * Visit a parse tree produced by {@link LParser#functionCall}.
      *
      * @param ctx the parse tree
@@ -189,6 +206,125 @@ public class Visitor implements LVisitor<String> {
     @Override
     public String visitComp(LParser.CompContext ctx) {
         String ans = write("COMPARE", ctx.getSourceInterval());
+        tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#eq}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitEq(LParser.EqContext ctx) {
+        String ans = write("EQ", ctx.getSourceInterval());
+        tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#neq}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitNeq(LParser.NeqContext ctx) {
+        String ans = write("NEQ", ctx.getSourceInterval());
+        tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#g}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitG(LParser.GContext ctx) {
+        String ans = write("G", ctx.getSourceInterval());
+        tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#ge}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitGe(LParser.GeContext ctx) {
+        String ans = write("GE", ctx.getSourceInterval());
+        tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#l}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitL(LParser.LContext ctx) {
+        String ans = write("L", ctx.getSourceInterval());
+        tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#le}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitLe(LParser.LeContext ctx) {
+        String ans = write("LE", ctx.getSourceInterval());
+        tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#returnStatement}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitReturnStatement(LParser.ReturnStatementContext ctx) {
+        String ans = write("RETURN", ctx.getSourceInterval());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -232,6 +368,23 @@ public class Visitor implements LVisitor<String> {
     }
 
     /**
+     * Visit a parse tree produced by {@link LParser#idents}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitIdents(LParser.IdentsContext ctx) {
+        String ans = write("IDENTS", ctx.getSourceInterval());
+        tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        tabs--;
+        return ans;
+    }
+
+    /**
      * Visit a parse tree produced by {@link LParser#p}.
      *
      * @param ctx the parse tree
@@ -240,9 +393,20 @@ public class Visitor implements LVisitor<String> {
     @Override
     public String visitP(LParser.PContext ctx) {
         String ans = "";
+        boolean exp = false;
+        if (ctx.sum != null) {
+            ans = write("SUM", ctx.getSourceInterval());
+            exp = true;
+        }
+        if (ctx.sub != null) {
+            ans = write("SUB", ctx.getSourceInterval());
+            exp = true;
+        }
+        if (exp) tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
         }
+        if (exp) tabs--;
         return ans;
     }
 
@@ -255,9 +419,24 @@ public class Visitor implements LVisitor<String> {
     @Override
     public String visitM(LParser.MContext ctx) {
         String ans = "";
+        boolean exp = false;
+        if (ctx.mult != null) {
+            ans = write("MULT", ctx.getSourceInterval());
+            exp = true;
+        }
+        if (ctx.div != null) {
+            ans = write("DIV", ctx.getSourceInterval());
+            exp = true;
+        }
+        if (ctx.rem != null) {
+            ans = write("REM", ctx.getSourceInterval());
+            exp = true;
+        }
+        if (exp) tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
         }
+        if (exp) tabs--;
         return ans;
     }
 
@@ -292,6 +471,21 @@ public class Visitor implements LVisitor<String> {
     }
 
     /**
+     * Visit a parse tree produced by {@link LParser#smth}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitSmth(LParser.SmthContext ctx) {
+        String ans = "";
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        return ans;
+    }
+
+    /**
      * Visit a parse tree produced by {@link LParser#number}.
      *
      * @param ctx the parse tree
@@ -314,7 +508,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitDigit(LParser.DigitContext ctx) {
-        return null;
+        return "w";
     }
 
     /**
@@ -325,7 +519,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitDigitsAndUnderscores(LParser.DigitsAndUnderscoresContext ctx) {
-        return null;
+        return "a";
     }
 
     /**
@@ -336,7 +530,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitDigits(LParser.DigitsContext ctx) {
-        return null;
+        return "p";
     }
 
     /**
@@ -358,7 +552,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitSignedInteger(LParser.SignedIntegerContext ctx) {
-        return null;
+        return "l";
     }
 
     /**
@@ -369,7 +563,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitExp(LParser.ExpContext ctx) {
-        return null;
+        return "b";
     }
 
     /**
@@ -402,7 +596,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visit(ParseTree tree) {
-        return null;
+        return "h";
     }
 
     /**
@@ -414,7 +608,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitChildren(RuleNode node) {
-        return null;
+        return "f";
     }
 
     /**
@@ -436,6 +630,6 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitErrorNode(ErrorNode node) {
-        return null;
+        return "s";
     }
 }

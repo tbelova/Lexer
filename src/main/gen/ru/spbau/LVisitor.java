@@ -58,6 +58,12 @@ public interface LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConditionStatement(LParser.ConditionStatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LParser#function}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction(LParser.FunctionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link LParser#functionCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -70,6 +76,48 @@ public interface LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitComp(LParser.CompContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LParser#eq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEq(LParser.EqContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#neq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNeq(LParser.NeqContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#g}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitG(LParser.GContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#ge}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGe(LParser.GeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#l}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitL(LParser.LContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#le}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLe(LParser.LeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#returnStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnStatement(LParser.ReturnStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link LParser#expressions}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -81,6 +129,12 @@ public interface LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpression(LParser.ExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#idents}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIdents(LParser.IdentsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link LParser#p}.
 	 * @param ctx the parse tree
@@ -105,6 +159,12 @@ public interface LVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitZ(LParser.ZContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#smth}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSmth(LParser.SmthContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link LParser#number}.
 	 * @param ctx the parse tree
