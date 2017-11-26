@@ -52,12 +52,6 @@ public interface LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWhileStatement(LParser.WhileStatementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LParser#conditionStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitConditionStatement(LParser.ConditionStatementContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link LParser#thenStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

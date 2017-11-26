@@ -1,0 +1,13 @@
+sum2 (a, b, mod) {
+	return (a + b) % m;
+}
+
+sum3(a, b, c, m) {
+	return sum2(sum2(a, b, m), m);
+}
+
+read(x, y, z);
+read(mod); 
+
+write(sum3(x, y, z, mod)); 
+

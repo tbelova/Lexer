@@ -1,14 +1,13 @@
 grammar L;
 
-program: statements;
+program: statements EOF;
 
 block: LeftFigureBrace statements RightFigureBrace;
-statements: | function | statement | block | statement statements | block statements;
+statements: | function statements | statement statements | block statements;
 statement: functionCall Semicolon | assignment Semicolon | whileStatement | ifstatement | returnStatement Semicolon | expression Semicolon;
-ifstatement: If LeftBrace conditionStatement RightBrace Then thenStatement | If LeftBrace conditionStatement RightBrace Then thenStatement Else elseStatement;
-assignment: ident AS conditionStatement | ident AS expression;
-whileStatement: While LeftBrace conditionStatement RightBrace block;
-conditionStatement: True | False | booleanExpression;
+ifstatement: If LeftBrace booleanExpression RightBrace Then thenStatement | If LeftBrace booleanExpression RightBrace Then thenStatement Else elseStatement;
+assignment: ident AS expression | ident AS booleanExpression;
+whileStatement: While LeftBrace booleanExpression RightBrace block;
 thenStatement: block;
 elseStatement: block;
 function: ident LeftBrace idents RightBrace block;
@@ -19,7 +18,7 @@ booleanExpression: a;
 a: b | r_or = a OR b;
 b: c | r_and = b AND c;
 c: d | r_eq = c EQ d | r_neq = c NEQ d | r_g = c G d | r_ge = c GE d | r_l = c L d | r_le = c LE d;
-d: expression | LeftBrace d RightBrace;
+d: expression | True | False | LeftBrace d RightBrace;
 
 eq: EQ;
 neq: NEQ;
@@ -28,7 +27,7 @@ ge: GE;
 l: L;
 le: LE;
 
-returnStatement: Return | Return smth;
+returnStatement: Return | Return expression;
 
 expressions: expression | expression Comma expressions;
 expression: p;
@@ -59,7 +58,6 @@ PositiveDigit: '1'..'9';
 Underscore: '_';
 
 Letter: 'a'..'z';
-LineTerminator: '\r'|'\n'|'\r\n';
 
 Dot: '.';
 Comma: ',';
@@ -99,7 +97,8 @@ Sign: '+' | '-';
 E: 'e' | 'E';
 
 Comment: '//'(~('\r'|'\n'))* -> skip;
-WhiteSpace: (LineTerminator |' '|'\t'|'\f') -> skip;
+LineTerminator: ('\r'|'\n'|'\r\n') -> skip;
+WhiteSpace: (' '|'\t'|'\f') -> skip;
 
 
 

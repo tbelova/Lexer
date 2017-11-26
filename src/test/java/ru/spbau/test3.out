@@ -1,0 +1,13 @@
+PROGRAM(1,9)
+   STATEMENTS(1,8)
+      BLOCK(1,8)
+         STATEMENTS(2,7)
+            STATEMENT(2,7)
+               ASSIGNMENT(2,6)
+                  IDENT(2,2)[y]
+                  EXPRESSION(4,6)
+                     SUM(4,6)
+                        IDENT(4,4)[x]
+                        INTEGER(6,6)[1]
+            STATEMENTS(8,7)
+      STATEMENTS(9,8)

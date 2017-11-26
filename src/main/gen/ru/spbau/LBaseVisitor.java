@@ -65,13 +65,6 @@ public class LBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements LVis
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitConditionStatement(LParser.ConditionStatementContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitThenStatement(LParser.ThenStatementContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

@@ -77,16 +77,6 @@ public interface LListener extends ParseTreeListener {
 	 */
 	void exitWhileStatement(LParser.WhileStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link LParser#conditionStatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterConditionStatement(LParser.ConditionStatementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link LParser#conditionStatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitConditionStatement(LParser.ConditionStatementContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link LParser#thenStatement}.
 	 * @param ctx the parse tree
 	 */

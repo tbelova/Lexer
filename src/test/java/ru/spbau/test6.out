@@ -1,0 +1,19 @@
+PROGRAM(1,13)
+   STATEMENTS(1,12)
+      STATEMENT(1,12)
+         IF_STATEMENT(1,12)
+            BOOLEAN_EXPRESSION(3,5)
+               GE(3,5)
+                  EXPRESSION(3,3)
+                     IDENT(3,3)[a]
+                  EXPRESSION(5,5)
+                     INTEGER(5,5)[5]
+            THEN_STATEMENT(8,12)
+               BLOCK(8,12)
+                  STATEMENTS(9,11)
+                     STATEMENT(9,11)
+                        RETURN(9,10)
+                           EXPRESSION(10,10)
+                              INTEGER(10,10)[0]
+                     STATEMENTS(12,11)
+      STATEMENTS(13,12)

@@ -147,23 +147,6 @@ public class Visitor implements LVisitor<String> {
     }
 
     /**
-     * Visit a parse tree produced by {@link LParser#conditionStatement}.
-     *
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    @Override
-    public String visitConditionStatement(LParser.ConditionStatementContext ctx) {
-        String ans = write("CONDITION", ctx.getSourceInterval());
-        tabs++;
-        for (int i = 0; i < ctx.getChildCount(); i++) {
-            ans += ctx.getChild(i).accept(this);
-        }
-        tabs--;
-        return ans;
-    }
-
-    /**
      * Visit a parse tree produced by {@link LParser#thenStatement}.
      *
      * @param ctx the parse tree

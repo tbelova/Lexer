@@ -1,0 +1,22 @@
+PROGRAM(1,16)
+   STATEMENTS(1,15)
+      FUNCTION(1,15)
+         IDENT(1,1)[f]
+         IDENTS(3,3)
+            IDENT(3,3)[x]
+         BLOCK(5,15)
+            STATEMENTS(6,14)
+               STATEMENT(6,11)
+                  ASSIGNMENT(6,10)
+                     IDENT(6,6)[y]
+                     EXPRESSION(8,10)
+                        SUM(8,10)
+                           IDENT(8,8)[x]
+                           INTEGER(10,10)[1]
+               STATEMENTS(12,14)
+                  STATEMENT(12,14)
+                     RETURN(12,13)
+                        EXPRESSION(13,13)
+                           IDENT(13,13)[y]
+                  STATEMENTS(15,14)
+      STATEMENTS(16,15)
