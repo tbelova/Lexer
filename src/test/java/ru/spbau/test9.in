@@ -6,8 +6,10 @@ sum3(a, b, c, m) {
 	return sum2(sum2(a, b, m), m);
 }
 
-read(x, y, z);
-read(mod); 
+read x;
+read y;
+read z;
+read mod;
 
-write(sum3(x, y, z, mod)); 
+write sum3(x, y, z, mod); 
 

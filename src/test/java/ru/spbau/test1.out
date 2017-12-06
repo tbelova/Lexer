@@ -1,10 +1,9 @@
-PROGRAM(1,7)
-   STATEMENTS(1,6)
-      STATEMENT(1,6)
-         ASSIGNMENT(1,5)
-            IDENT(1,1)[x]
-            EXPRESSION(3,5)
-               SUM(3,5)
-                  IDENT(3,3)[y]
-                  INTEGER(5,5)[1]
-      STATEMENTS(7,6)
+PROGRAM((1,0)(2,4))
+   STATEMENTS((1,0)(1,10))
+      STATEMENT((1,0)(1,10))
+         ASSIGNMENT((1,0)(1,9))
+            IDENT((1,0)(1,0))[x]
+            EXPRESSION((1,5)(1,9))
+               SUM((1,5)(1,9))
+                  IDENT((1,5)(1,5))[y]
+                  INTEGER((1,9)(1,9))[1]

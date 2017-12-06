@@ -3,11 +3,13 @@ grammar L;
 program: statements EOF;
 
 block: LeftFigureBrace statements RightFigureBrace;
-statements: | function statements | statement statements | block statements;
-statement: functionCall Semicolon | assignment Semicolon | whileStatement | ifstatement | returnStatement Semicolon | expression Semicolon;
+statements: | function | statement | block | function statements | statement statements | block statements;
+statement: functionCall Semicolon | assignment Semicolon | whileStatement | ifstatement | returnStatement Semicolon | readStatement Semicolon | writeStatement Semicolon | expression Semicolon;
 ifstatement: If LeftBrace booleanExpression RightBrace Then thenStatement | If LeftBrace booleanExpression RightBrace Then thenStatement Else elseStatement;
+readStatement: Read ident;
+writeStatement: Write expression;
 assignment: ident AS expression | ident AS booleanExpression;
-whileStatement: While LeftBrace booleanExpression RightBrace block;
+whileStatement: While LeftBrace booleanExpression RightBrace Do block;
 thenStatement: block;
 elseStatement: block;
 function: ident LeftBrace idents RightBrace block;
@@ -86,6 +88,9 @@ If: 'if';
 Then: 'then';
 Else: 'else';
 While: 'while';
+Write: 'write';
+Read: 'read';
+Do: 'do';
 
 Return: 'return';
 

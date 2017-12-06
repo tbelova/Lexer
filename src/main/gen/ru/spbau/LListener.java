@@ -57,6 +57,26 @@ public interface LListener extends ParseTreeListener {
 	 */
 	void exitIfstatement(LParser.IfstatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LParser#readStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterReadStatement(LParser.ReadStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#readStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitReadStatement(LParser.ReadStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LParser#writeStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterWriteStatement(LParser.WriteStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#writeStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitWriteStatement(LParser.WriteStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link LParser#assignment}.
 	 * @param ctx the parse tree
 	 */

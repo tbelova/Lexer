@@ -40,6 +40,18 @@ public interface LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIfstatement(LParser.IfstatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LParser#readStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReadStatement(LParser.ReadStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LParser#writeStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWriteStatement(LParser.WriteStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link LParser#assignment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

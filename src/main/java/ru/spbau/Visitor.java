@@ -1,6 +1,6 @@
 package ru.spbau;
 
-import org.antlr.v4.runtime.misc.Interval;
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
@@ -23,12 +23,22 @@ public class Visitor implements LVisitor<String> {
         return spaces(3 * tabs);
     }
 
-    private @NotNull String write(@NotNull String s, Interval i) {
-        return spaces() + s + '(' + (i.a + 1)  + ',' + (i.b + 1) + ")\n";
+    private @NotNull String write(@NotNull String s, int sl, int sp, int fl, int fp) {
+        return spaces() + s + '(' + '(' + (sl)  + ',' + (sp) + ')' + '(' + (fl) + ',' + (fp) + ')' + ')' + "\n";
     }
 
-    private @NotNull String write(@NotNull String s, Interval i, @NotNull String t) {
-        return spaces() + s + '(' + (i.a + 1)  + ',' + (i.b + 1) + ')' + '[' + t + "]\n";
+    private @NotNull String write(@NotNull String s, int sl, int sp, int fl, int fp, @NotNull String t) {
+        return spaces() + s + '(' + '(' + (sl)  + ',' + (sp) + ')' + '(' + (fl) + ',' + (fp) + ')' + ')' + '[' + t + "]\n";
+    }
+
+    private @NotNull String write(@NotNull String s, Token st, Token sp) {
+        return write(s, st.getLine(), st.getCharPositionInLine(), sp.getLine(),
+                sp.getCharPositionInLine() + sp.getText().length() - 1);
+    }
+
+    private @NotNull String write(@NotNull String s, Token st, Token sp, @NotNull String t) {
+        return write(s, st.getLine(), st.getCharPositionInLine(), sp.getLine(),
+                sp.getCharPositionInLine() + sp.getText().length() - 1, t);
     }
 
     /**
@@ -39,7 +49,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitProgram(LParser.ProgramContext ctx) {
-        String ans = write("PROGRAM", ctx.getSourceInterval());
+        String ans = write("PROGRAM", ctx.getStart(), ctx.getStop());
         tabs++;
         ans += visitStatements(ctx.statements());
         tabs--;
@@ -54,7 +64,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitBlock(LParser.BlockContext ctx) {
-        String ans = write("BLOCK", ctx.getSourceInterval());
+        String ans = write("BLOCK", ctx.getStart(), ctx.getStop());
         tabs++;
         ans += visitStatements(ctx.statements());
         tabs--;
@@ -69,7 +79,8 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitStatements(LParser.StatementsContext ctx) {
-        String ans = write("STATEMENTS", ctx.getSourceInterval());
+        String ans = write("STATEMENTS", ctx.getStart(), ctx.getStop());
+
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -86,7 +97,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitStatement(LParser.StatementContext ctx) {
-        String ans = write("STATEMENT", ctx.getSourceInterval());
+        String ans = write("STATEMENT", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -103,7 +114,41 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitIfstatement(LParser.IfstatementContext ctx) {
-        String ans = write("IF_STATEMENT", ctx.getSourceInterval());
+        String ans = write("IF_STATEMENT", ctx.getStart(), ctx.getStop());
+        tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#readStatement}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitReadStatement(LParser.ReadStatementContext ctx) {
+        String ans = write("READ_STATEMENT", ctx.getStart(), ctx.getStop());
+        tabs++;
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        tabs--;
+        return ans;
+    }
+
+    /**
+     * Visit a parse tree produced by {@link LParser#writeStatement}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitWriteStatement(LParser.WriteStatementContext ctx) {
+        String ans = write("WRITE_STATEMENT", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -120,7 +165,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitAssignment(LParser.AssignmentContext ctx) {
-        String ans = write("ASSIGNMENT", ctx.getSourceInterval());
+        String ans = write("ASSIGNMENT", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -137,7 +182,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitWhileStatement(LParser.WhileStatementContext ctx) {
-        String ans = write("WHILE_STATEMENT", ctx.getSourceInterval());
+        String ans = write("WHILE_STATEMENT", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -154,7 +199,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitThenStatement(LParser.ThenStatementContext ctx) {
-        String ans = write("THEN_STATEMENT", ctx.getSourceInterval());
+        String ans = write("THEN_STATEMENT", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -171,7 +216,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitElseStatement(LParser.ElseStatementContext ctx) {
-        String ans = write("ELSE_STATEMENT", ctx.getSourceInterval());
+        String ans = write("ELSE_STATEMENT", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -188,7 +233,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitFunction(LParser.FunctionContext ctx) {
-        String ans = write("FUNCTION", ctx.getSourceInterval());
+        String ans = write("FUNCTION", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -205,7 +250,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitFunctionCall(LParser.FunctionCallContext ctx) {
-        String ans = write("FUNCTION_CALL", ctx.getSourceInterval());
+        String ans = write("FUNCTION_CALL", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -222,7 +267,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitBooleanExpression(LParser.BooleanExpressionContext ctx) {
-        String ans = write("BOOLEAN_EXPRESSION", ctx.getSourceInterval());
+        String ans = write("BOOLEAN_EXPRESSION", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -242,7 +287,7 @@ public class Visitor implements LVisitor<String> {
         String ans = "";
         boolean exp = false;
         if (ctx.r_or != null) {
-            ans = write("OR", ctx.getSourceInterval());
+            ans = write("OR", ctx.getStart(), ctx.getStop());
             exp = true;
         }
         if (exp) tabs++;
@@ -264,7 +309,7 @@ public class Visitor implements LVisitor<String> {
         String ans = "";
         boolean exp = false;
         if (ctx.r_and != null) {
-            ans = write("AND", ctx.getSourceInterval());
+            ans = write("AND", ctx.getStart(), ctx.getStop());
             exp = true;
         }
         if (exp) tabs++;
@@ -286,27 +331,27 @@ public class Visitor implements LVisitor<String> {
         String ans = "";
         boolean exp = false;
         if (ctx.r_eq != null) {
-            ans = write("EQ", ctx.getSourceInterval());
+            ans = write("EQ", ctx.getStart(), ctx.getStop());
             exp = true;
         }
         if (ctx.r_neq != null) {
-            ans = write("NEQ", ctx.getSourceInterval());
+            ans = write("NEQ", ctx.getStart(), ctx.getStop());
             exp = true;
         }
         if (ctx.r_g != null) {
-            ans = write("G", ctx.getSourceInterval());
+            ans = write("G", ctx.getStart(), ctx.getStop());
             exp = true;
         }
         if (ctx.r_ge != null) {
-            ans = write("GE", ctx.getSourceInterval());
+            ans = write("GE", ctx.getStart(), ctx.getStop());
             exp = true;
         }
         if (ctx.r_l != null) {
-            ans = write("L", ctx.getSourceInterval());
+            ans = write("L", ctx.getStart(), ctx.getStop());
             exp = true;
         }
         if (ctx.r_le != null) {
-            ans = write("LE", ctx.getSourceInterval());
+            ans = write("LE", ctx.getStart(), ctx.getStop());
             exp = true;
         }
         if (exp) tabs++;
@@ -340,7 +385,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitEq(LParser.EqContext ctx) {
-        String ans = write("EQ", ctx.getSourceInterval());
+        String ans = write("EQ", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -357,7 +402,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitNeq(LParser.NeqContext ctx) {
-        String ans = write("NEQ", ctx.getSourceInterval());
+        String ans = write("NEQ", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -374,7 +419,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitG(LParser.GContext ctx) {
-        String ans = write("G", ctx.getSourceInterval());
+        String ans = write("G", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -391,7 +436,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitGe(LParser.GeContext ctx) {
-        String ans = write("GE", ctx.getSourceInterval());
+        String ans = write("GE", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -408,7 +453,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitL(LParser.LContext ctx) {
-        String ans = write("L", ctx.getSourceInterval());
+        String ans = write("L", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -425,7 +470,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitLe(LParser.LeContext ctx) {
-        String ans = write("LE", ctx.getSourceInterval());
+        String ans = write("LE", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -442,7 +487,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitReturnStatement(LParser.ReturnStatementContext ctx) {
-        String ans = write("RETURN", ctx.getSourceInterval());
+        String ans = write("RETURN", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -459,7 +504,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitExpressions(LParser.ExpressionsContext ctx) {
-        String ans = write("EXPRESSIONS", ctx.getSourceInterval());
+        String ans = write("EXPRESSIONS", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -476,7 +521,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitExpression(LParser.ExpressionContext ctx) {
-        String ans = write("EXPRESSION", ctx.getSourceInterval());
+        String ans = write("EXPRESSION", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -493,7 +538,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitIdents(LParser.IdentsContext ctx) {
-        String ans = write("IDENTS", ctx.getSourceInterval());
+        String ans = write("IDENTS", ctx.getStart(), ctx.getStop());
         tabs++;
         for (int i = 0; i < ctx.getChildCount(); i++) {
             ans += ctx.getChild(i).accept(this);
@@ -513,11 +558,11 @@ public class Visitor implements LVisitor<String> {
         String ans = "";
         boolean exp = false;
         if (ctx.sum != null) {
-            ans = write("SUM", ctx.getSourceInterval());
+            ans = write("SUM", ctx.getStart(), ctx.getStop());
             exp = true;
         }
         if (ctx.sub != null) {
-            ans = write("SUB", ctx.getSourceInterval());
+            ans = write("SUB", ctx.getStart(), ctx.getStop());
             exp = true;
         }
         if (exp) tabs++;
@@ -539,15 +584,15 @@ public class Visitor implements LVisitor<String> {
         String ans = "";
         boolean exp = false;
         if (ctx.mult != null) {
-            ans = write("MULT", ctx.getSourceInterval());
+            ans = write("MULT", ctx.getStart(), ctx.getStop());
             exp = true;
         }
         if (ctx.div != null) {
-            ans = write("DIV", ctx.getSourceInterval());
+            ans = write("DIV", ctx.getStart(), ctx.getStop());
             exp = true;
         }
         if (ctx.rem != null) {
-            ans = write("REM", ctx.getSourceInterval());
+            ans = write("REM", ctx.getStart(), ctx.getStop());
             exp = true;
         }
         if (exp) tabs++;
@@ -659,7 +704,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitR_integer(LParser.R_integerContext ctx) {
-        return write("INTEGER", ctx.getSourceInterval(), ctx.getText());
+        return write("INTEGER", ctx.getStart(), ctx.getStop(), ctx.getText());
     }
 
     /**
@@ -692,7 +737,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitR_float(LParser.R_floatContext ctx) {
-        return write("FLOAT", ctx.getSourceInterval(), ctx.getText());
+        return write("FLOAT", ctx.getStart(), ctx.getStop(), ctx.getText());
     }
 
     /**
@@ -703,7 +748,7 @@ public class Visitor implements LVisitor<String> {
      */
     @Override
     public String visitIdent(LParser.IdentContext ctx) {
-        return write("IDENT", ctx.getSourceInterval(), ctx.getText());
+        return write("IDENT", ctx.getStart(), ctx.getStop(), ctx.getText());
     }
 
     /**
