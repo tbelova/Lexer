@@ -118,6 +118,12 @@ public interface LVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitD(LParser.DContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LParser#e}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitE(LParser.EContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link LParser#eq}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

@@ -187,6 +187,16 @@ public interface LListener extends ParseTreeListener {
 	 */
 	void exitD(LParser.DContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LParser#e}.
+	 * @param ctx the parse tree
+	 */
+	void enterE(LParser.EContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LParser#e}.
+	 * @param ctx the parse tree
+	 */
+	void exitE(LParser.EContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link LParser#eq}.
 	 * @param ctx the parse tree
 	 */

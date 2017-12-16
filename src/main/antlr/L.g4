@@ -19,8 +19,9 @@ booleanExpression: a;
 
 a: b | r_or = a OR b;
 b: c | r_and = b AND c;
-c: d | r_eq = c EQ d | r_neq = c NEQ d | r_g = c G d | r_ge = c GE d | r_l = c L d | r_le = c LE d;
-d: expression | True | False | LeftBrace d RightBrace;
+c: e | r_eq = d EQ d | r_neq = d NEQ d | r_g = d G d | r_ge = d GE d | r_l = d L d | r_le = d LE d;
+d: expression;
+e: True | False | LeftBrace a RightBrace;
 
 eq: EQ;
 neq: NEQ;

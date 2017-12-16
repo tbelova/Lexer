@@ -378,6 +378,21 @@ public class Visitor implements LVisitor<String> {
     }
 
     /**
+     * Visit a parse tree produced by {@link LParser#e}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    @Override
+    public String visitE(LParser.EContext ctx) {
+        String ans = "";
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ans += ctx.getChild(i).accept(this);
+        }
+        return ans;
+    }
+
+    /**
      * Visit a parse tree produced by {@link LParser#eq}.
      *
      * @param ctx the parse tree
