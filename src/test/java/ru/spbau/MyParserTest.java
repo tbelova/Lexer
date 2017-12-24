@@ -66,4 +66,16 @@ public class MyParserTest {
         assertEquals(readFileToString(new File(path + "test9.out"), (Charset) null), new MyParser(s).printTree());
     }
 
+    @Test
+    public void test10() throws Exception {
+        String s = readFileToString(new File(path + "test10.in"), (Charset) null);
+        assertEquals(readFileToString(new File(path + "test10.out"), (Charset) null), new MyParser(s).printTree());
+    }
+
+    @Test
+    public void test11() throws Exception {
+        String s = readFileToString(new File(path + "test11.in"), (Charset) null);
+        assertEquals(readFileToString(new File(path + "test11.out"), (Charset) null), new MyParser(s).printTree());
+    }
+
 }
